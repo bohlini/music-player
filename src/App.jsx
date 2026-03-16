@@ -1,24 +1,32 @@
 import "./global-css.css";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Callback from "./Callback";
-import Home from "./Components/Home/Home";
-import MainLayout from "./Components/Layout/MainLayout";
-import NowPlaying from "./Components/NowPlaying/NowPlaying";
-import Playlists from "./Components/Playlists/Playlists";
-import Profile from "./Components/Profile/Profile";
+import MainLayout from "./Layout/MainLayout";
+import Home from "./PageComponents/Home/Home";
+import NowPlaying from "./PageComponents/NowPlaying/NowPlaying";
+import Playlists from "./PageComponents/Playlists/Playlists";
+import Profile from "./PageComponents/Profile/Profile";
+import { SongsProvider } from "./Context/SongsContext";
+import { ThemeProvider } from "./Context/ThemeContext";
+
+//School Notes
+import { UseRef } from "./SchoolNotes/UseRef";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <MainLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/callback" element={<Callback />} />
-          <Route path="/nowPlaying" element={<NowPlaying />} />
-          <Route path="/playlists" element={<Playlists />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </MainLayout>
+      <SongsProvider>
+        <ThemeProvider>
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/nowPlaying" element={<NowPlaying />} />
+              <Route path="/playlists" element={<Playlists />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="useRef" element={<UseRef />} />
+            </Routes>
+          </MainLayout>
+        </ThemeProvider>
+      </SongsProvider>
     </BrowserRouter>
   );
 }
