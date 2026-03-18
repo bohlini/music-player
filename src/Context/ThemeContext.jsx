@@ -1,24 +1,27 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import { useFetch } from "../Hooks/useFetch";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(null);
+  const [themes, setThemes] = useState([]);
+  const [currentTheme, setCurrentTheme] = useState(null);
+
+  const { data } = useFetch("https://api-database-c4.vercel.app/songs/");
 
   useEffect(() => {
-    fetch("https://api-database-c4.vercel.app/songs/")
-      .then((response) => response.json())
-      .then((data) => data.theme)
-      .then((themeData) => setTheme(themeData));
-  }, []);
+    if (!data) return;
+    const extractedThemes = data.map((dataObj) => dataObj.theme);
+    setThemes(extractedThemes);
+  }, [data]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ themes, currentTheme, setCurrentTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
-export function useTheme() {
+export function useThemes() {
   return useContext(ThemeContext);
 }

@@ -24,7 +24,7 @@ export function UseRef() {
   //   inputRef.current.focus(); // always .current when refereing to the ref
   // }, []); //first time visit - run it once
 
-  console.log("render"); //trigger on button click
+  // console.log("render"); //trigger on button click
 
   //difference between state and ref = both store value
   // ref - UI does not re-render, state does

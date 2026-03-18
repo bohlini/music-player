@@ -1,12 +1,23 @@
 import Navbar from "../Components/Navbar/Navbar";
-import Footer from "../Components/Footer/Footer";
 
 export default function MainLayout({ children }) {
+  // const image = currentSong.img_url;
+
+  // useEffect(() => {
+  //   if (!currentSong) return;
+  //   Object.assign(document.body.style, {
+  //     backgroundImage: `url(${currentSong.img_url})`,
+  //     backgroundSize: "cover",
+  //     backgroundPosition: "center",
+  //     backgroundAttachment: "fixed",
+  //   });
+  // }, [currentSong]);
+
   return (
     <div style={{ margin: "0 40px" }}>
       <Navbar />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

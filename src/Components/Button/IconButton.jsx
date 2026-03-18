@@ -1,5 +1,5 @@
 import { IoColorFill } from "react-icons/io5";
-import { useSongs } from "../../Context/SongsContext";
+import { useSongs } from "../../Context/TracksContext";
 import { useTheme } from "../../Context/ThemeContext";
 import { useEffect, useState } from "react";
 import styles from "./IconButton.module.css";
@@ -7,20 +7,11 @@ import styles from "./IconButton.module.css";
 export default function IconButton({
   onClick,
   type = "button",
-  size = "medium",
+  size,
   icon,
-  shadow,
+  currentTheme,
 }) {
-  const [buttonTheme, setButtonTheme] = useState("default");
-  // const { songs } = useSongs();
-  // console.log("songs in iconBtn: ", songs);
-
-  // const { theme } = useTheme();
-  // console.log(theme);
-
   const baseStyle = {
-    width: "clamp(40px, 8vw, 80px)",
-    height: "clamp(40px, 8vw, 80px)",
     borderRadius: "50%",
     border: "none",
     cursor: "pointer",
@@ -29,24 +20,42 @@ export default function IconButton({
     justifyContent: "center",
     backgroundColor: "#FFFFF",
     boxShadow:
-      "0px 6.27px 21.49px 0px rgba(0, 0, 0, 0.10), 0px 0.9px 3.58px 0px rgba(0, 0, 0, 0.02)",
-    backdropFilter: "blur(25.07px)",
+      "0px 6.267441749572754px 21.488372802734375px 0px rgba(0, 0, 0, 10%), 0px 0.895348846912384px 3.581395387649536px 0px rgba(0, 0, 0, 2%)",
+    backdropFilter: "blur(12.53px) brightness(100%)",
     WebkitBackdropFilter: "blur(25.07px)",
-    opacity: ".95",
   };
   const sizes = {
-    small: { padding: "6px 12px", fontSize: "12px" },
-    medium: { padding: "10px 20px", fontSize: "14px" },
-    large: { padding: "14px 28px", fontSize: "16px" },
+    small: {
+      width: "40px",
+      height: "40px",
+      fontSize: "25px",
+      color: "black",
+      boxShadow: `inset -7.16px 10.74px 45px 10.59px white`,
+      opacity: ".55",
+    },
+    smallWTheme: {
+      width: "40px",
+      height: "40px",
+      fontSize: "25px",
+      color: "white",
+      boxShadow: `inset -7.16px 10.74px 45px 10.59px ${currentTheme}, inset 10px 10px 20px 20px rgba(255, 255, 255, 0.3)`,
+    },
+    large: {
+      width: "80px",
+      height: "80px",
+      fontSize: "40px",
+      color: "white",
+      boxShadow: `inset -7.16px 10.74px 45px 10.59px ${currentTheme}`,
+      opacity: ".95",
+    },
   };
   const finalStyle = {
     ...baseStyle,
     ...sizes[size],
-    boxShadow: `inset -7.16px 10.74px 45px 10.59px ${buttonTheme}`,
   };
   const iconStyle = {
-    color: "white",
-    fontSize: "40px",
+    color: sizes[size.color],
+    fontSize: sizes[size.fontSize],
     width: "clamp(40px, 8vw, 80px)",
     height: "clamp(40px, 8vw, 80px)",
     display: "flex",
