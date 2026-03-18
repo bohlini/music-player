@@ -5,6 +5,7 @@ import { IoHeartOutline } from "react-icons/io5";
 import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
 
 export default function TrackCard({ currentTheme }) {
+  //isLiked should be context or ref?
   const [isLiked, setIsLiked] = useState(false);
   const { focusTrack, currentTrack } = useCurrentTrack();
 

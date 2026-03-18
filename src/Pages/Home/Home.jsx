@@ -9,7 +9,7 @@ export default function Home() {
       <div>
         <PlayerContainer />
         <PlayListCard />
-        <h1 style={{ color: currentTheme }}>Home</h1>
+        <h1>Home</h1>
       </div>
     </>
   );

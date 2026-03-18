@@ -10,12 +10,11 @@ import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
 import styles from "./PlaybackMenu.module.css";
 
 export default function PlaybackMenu({ currentTheme }) {
+  //isPlaying should be context or ref?
   const [isPlaying, setIsPlaying] = useState(true);
-  const { focusTrack } = useCurrentTrack();
 
   function handlePlay() {
     setIsPlaying((prevState) => !prevState);
-    // focusTrack(track);
   }
 
   function placeHolderFunction() {
