@@ -45,7 +45,7 @@ export default function IconButton({
       height: "80px",
       fontSize: "40px",
       color: "white",
-      boxShadow: `inset -7.16px 10.74px 45px 10.59px ${currentTheme}`,
+      boxShadow: `inset -7.16px 10.74px 45px 15.59px ${currentTheme}`,
       opacity: ".95",
     },
   };
