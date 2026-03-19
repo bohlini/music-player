@@ -6,3 +6,13 @@ a.active {
     color: white !important;
     background-color: black;
 }
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1.1);
+    }
+
+    to {
+        transform: scale(1.25);
+    }
+}

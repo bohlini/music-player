@@ -3,31 +3,16 @@ import styles from "./TrackCard.module.css";
 import { IoHeartSharp } from "react-icons/io5";
 import { IoHeartOutline } from "react-icons/io5";
 import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
+import { useFavorites } from "../../../Context/FavoritesContext";
 
-export default function TrackCard({ currentTheme }) {
-  //isLiked should be context or ref?
-  const [isLiked, setIsLiked] = useState(false);
+export default function TrackCard({ currentTheme, variant }) {
+  const { isLiked, setLike } = useFavorites();
   const { focusTrack, currentTrack } = useCurrentTrack();
-
-  function setLike() {
-    setIsLiked((prevState) => !prevState);
-  }
 
   if (!currentTrack) return;
   return (
-    // -webkit-background-clip: text !important;
-    // -webkit-text-fill-color: transparent;
-    // align-items: center;
-    // background: linear-gradient(
-    //   270deg,
-    //   rgba(0, 0, 0, 0) 0%,
-    //   rgba(0, 0, 0, 0.37) 100%
-    // );
-    // background-clip: text;
-    // color: transparent;
-
     <>
-      <div className={styles.cardContainer}>
+      <div className={`${styles.cardContainer} ${styles[variant]}`}>
         <span style={{ color: currentTheme }}>{currentTrack.year}</span>
         <img
           onClick={() => focusTrack(currentTrack)}
@@ -35,8 +20,8 @@ export default function TrackCard({ currentTheme }) {
           src={currentTrack.img_url}
           alt={currentTrack.title}
         />
-        <div onClick={setLike} className={styles.iconWrap}>
-          {isLiked ? (
+        <div onClick={() => setLike(currentTrack)} className={styles.iconWrap}>
+          {currentTrack && isLiked(currentTrack) ? (
             <IoHeartSharp style={{ color: currentTheme }} />
           ) : (
             <IoHeartOutline />

@@ -1,0 +1,18 @@
+.home {
+    color: white;
+}
+
+.nowPlaying {
+    color: aqua;
+}
+
+.playlists {
+    color: pink;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    align-items: center;
+}

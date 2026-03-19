@@ -1,7 +1,13 @@
+import PlayerContainer from "../../Components/PlayerContainer/PlayerContainer";
+
 export default function NowPlaying() {
   return (
-    <>
-      <h1>Now Playing</h1>
-    </>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    ></div>
   );
 }

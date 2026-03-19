@@ -1,9 +1,3 @@
-import { IoColorFill } from "react-icons/io5";
-import { useSongs } from "../../Context/TracksContext";
-import { useTheme } from "../../Context/ThemeContext";
-import { useEffect, useState } from "react";
-import styles from "./IconButton.module.css";
-
 export default function IconButton({
   onClick,
   type = "button",
@@ -20,7 +14,7 @@ export default function IconButton({
     justifyContent: "center",
     backgroundColor: "#FFFFF",
     boxShadow:
-      "0px 6.267441749572754px 21.488372802734375px 0px rgba(0, 0, 0, 10%), 0px 0.895348846912384px 3.581395387649536px 0px rgba(0, 0, 0, 2%)",
+      "0px 6.267441749572754px 21.488372802734375px 0px rgba(0, 0, 0, 20%), 0px 0.895348846912384px 3.581395387649536px 0px rgba(0, 0, 0, 2%)",
     backdropFilter: "blur(12.53px) brightness(100%)",
     WebkitBackdropFilter: "blur(25.07px)",
   };
@@ -45,7 +39,7 @@ export default function IconButton({
       height: "80px",
       fontSize: "40px",
       color: "white",
-      boxShadow: `inset -7.16px 10.74px 45px 15.59px ${currentTheme}`,
+      boxShadow: `inset -7.16px 10.74px 45px 20.59px ${currentTheme}`,
       opacity: ".95",
     },
   };

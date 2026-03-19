@@ -6,6 +6,7 @@ import IconButton from "../../Components/Button/IconButton";
 import { useTracks } from "../../Context/TracksContext";
 import PlayListCard from "../../Components/PlayListCard/PlayListCard";
 import { useCurrentTrack } from "../../Context/CurrentTrackContext";
+import PlayerContainer from "../../Components/PlayerContainer/PlayerContainer";
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState([
@@ -26,10 +27,6 @@ export default function Playlists() {
     const list = playlists.map((pl, index) => <li key={index}>{pl.name}</li>);
     return list;
   }
-
-  useEffect(() => {
-    console.log(currentTrack);
-  }, [currentTrack]);
 
   function showTrackList() {
     const list = tracks.map((track, index) => (
@@ -69,8 +66,6 @@ export default function Playlists() {
       <div>
         <ul style={{ textAlign: "center" }}>{showTrackList()}</ul>
       </div>
-
-      <div></div>
     </>
   );
 }

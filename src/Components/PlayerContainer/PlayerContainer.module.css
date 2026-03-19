@@ -1,6 +1,11 @@
-.wrapper {
+.home,
+.nowPlaying {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     gap: 1em;
+}
+
+.playlists {
+    display: flex;
 }

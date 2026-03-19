@@ -7,15 +7,31 @@ import { IoShuffleOutline } from "react-icons/io5";
 import { IoRefresh } from "react-icons/io5";
 import { useState } from "react";
 import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
+import { useTracks } from "../../../Context/TracksContext";
 import styles from "./PlaybackMenu.module.css";
 
 export default function PlaybackMenu({ currentTheme }) {
-  //isPlaying should be context or ref?
-  const [isPlaying, setIsPlaying] = useState(true);
+  const { isPlaying, setIsPlaying, currentTrack, focusTrack } =
+    useCurrentTrack();
+  const { tracks } = useTracks();
 
   function handlePlay() {
     setIsPlaying((prevState) => !prevState);
   }
+
+  function nextTrack() {
+    const index = tracks.indexOf(currentTrack);
+    if (tracks[index + 1]) focusTrack(tracks[index + 1]);
+    else focusTrack(tracks[0]);
+  }
+
+  function previusTrack() {
+    const index = tracks.indexOf(currentTrack);
+    if (tracks[index - 1]) focusTrack(tracks[index - 1]);
+    else focusTrack(tracks[tracks.length - 1]);
+  }
+
+  function shuffle() {}
 
   function placeHolderFunction() {
     console.log("clicked");
@@ -31,10 +47,10 @@ export default function PlaybackMenu({ currentTheme }) {
         <IconButton
           icon={<IoPlaySkipBackOutline />}
           size="small"
-          onClick={placeHolderFunction}
+          onClick={previusTrack}
         />
         <IconButton
-          icon={isPlaying ? <MdPlayArrow /> : <RxPause />}
+          icon={isPlaying ? <RxPause /> : <MdPlayArrow />}
           size="large"
           currentTheme={currentTheme}
           onClick={handlePlay}
@@ -42,7 +58,7 @@ export default function PlaybackMenu({ currentTheme }) {
         <IconButton
           icon={<IoPlaySkipForwardOutline />}
           size="small"
-          onClick={placeHolderFunction}
+          onClick={nextTrack}
         />
         <IconButton
           icon={<IoRefresh />}
