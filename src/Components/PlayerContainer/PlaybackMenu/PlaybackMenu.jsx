@@ -13,7 +13,7 @@ import styles from "./PlaybackMenu.module.css";
 export default function PlaybackMenu({ currentTheme }) {
   const { isPlaying, setIsPlaying, currentTrack, focusTrack } =
     useCurrentTrack();
-  const { tracks } = useTracks();
+  const { tracks, setShuffled } = useTracks();
 
   function handlePlay() {
     setIsPlaying((prevState) => !prevState);
@@ -31,10 +31,12 @@ export default function PlaybackMenu({ currentTheme }) {
     else focusTrack(tracks[tracks.length - 1]);
   }
 
-  function shuffle() {}
+  function shuffle() {
+    setShuffled((prevState) => !prevState);
+  }
 
-  function placeHolderFunction() {
-    console.log("clicked");
+  function reset() {
+    console.log("reset duration");
   }
   return (
     <>
@@ -42,7 +44,7 @@ export default function PlaybackMenu({ currentTheme }) {
         <IconButton
           icon={<IoShuffleOutline />}
           size="small"
-          onClick={placeHolderFunction}
+          onClick={shuffle}
         />
         <IconButton
           icon={<IoPlaySkipBackOutline />}
@@ -60,11 +62,7 @@ export default function PlaybackMenu({ currentTheme }) {
           size="small"
           onClick={nextTrack}
         />
-        <IconButton
-          icon={<IoRefresh />}
-          size="small"
-          onClick={placeHolderFunction}
-        />
+        <IconButton icon={<IoRefresh />} size="small" onClick={reset} />
       </div>
     </>
   );

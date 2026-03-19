@@ -42,10 +42,24 @@ export default function MainLayout({ children }) {
           zIndex: -1,
         }}
       />
-      <div style={{ margin: "0 40px", zIndex: 1 }}>
+      <div
+        style={{
+          margin: "0 40px",
+          zIndex: 1,
+        }}
+      >
         <Navbar />
         {children}
-        <PlayerContainer variant={pageVariant()} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems:
+              pageVariant() === "nowPlaying" ? "center" : "flex-start",
+          }}
+        >
+          <PlayerContainer variant={pageVariant()} />
+        </div>
       </div>
     </>
   );

@@ -6,6 +6,32 @@
     gap: 1em;
 }
 
+.home .info,
+.nowPlaying .info {
+    margin-right: auto;
+}
+
+.home .controls,
+.nowPlaying .controls {
+    margin-right: 25px;
+}
+
 .playlists {
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2em;
+}
+
+.playlists .rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }

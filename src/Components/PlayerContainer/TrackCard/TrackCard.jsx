@@ -14,21 +14,24 @@ export default function TrackCard({ currentTheme, variant }) {
     <>
       <div className={`${styles.cardContainer} ${styles[variant]}`}>
         <span style={{ color: currentTheme }}>{currentTrack.year}</span>
-        <img
-          onClick={() => focusTrack(currentTrack)}
-          className={styles.image}
-          src={currentTrack.img_url}
-          alt={currentTrack.title}
-        />
-        <div onClick={() => setLike(currentTrack)} className={styles.iconWrap}>
-          {currentTrack && isLiked(currentTrack) ? (
-            <IoHeartSharp style={{ color: currentTheme }} />
-          ) : (
-            <IoHeartOutline />
-          )}
+        <div className={styles.flexWrap}>
+          <img
+            onClick={() => focusTrack(currentTrack)}
+            className={styles.image}
+            src={currentTrack.img_url}
+            alt={currentTrack.title}
+          />
+          <div
+            onClick={() => setLike(currentTrack)}
+            className={styles.iconWrap}
+          >
+            {currentTrack && isLiked(currentTrack) ? (
+              <IoHeartSharp style={{ color: currentTheme }} />
+            ) : (
+              <IoHeartOutline />
+            )}
+          </div>
         </div>
-        <p className={styles.track}>{currentTrack.title}</p>
-        <p className={styles.artist}>{currentTrack.artist}</p>
       </div>
     </>
   );

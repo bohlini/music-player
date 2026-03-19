@@ -15,11 +15,12 @@ export function TracksProvider({ children }) {
   }, [data]);
 
   useEffect(() => {
-    if (shuffled) console.log("shuffled");
+    if (!shuffled) console.log("not shuffled");
+    else console.log("shuffled");
   }, [shuffled]);
 
   return (
-    <TracksContext.Provider value={{ tracks }}>
+    <TracksContext.Provider value={{ tracks, shuffled, setShuffled }}>
       {children}
     </TracksContext.Provider>
   );
