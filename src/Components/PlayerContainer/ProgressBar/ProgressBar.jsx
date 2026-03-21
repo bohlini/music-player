@@ -1,21 +1,30 @@
 import styles from "./ProgressBar.module.css";
 import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
 import { useEffect } from "react";
+import { useDuration } from "../../../Context/DurationContext";
 
 export default function ProgressBar({ currentTheme, variant }) {
   const { currentTrack, isPlaying } = useCurrentTrack();
-  const duration = currentTrack.duration;
-  console.log(duration);
+  const {
+    displayDuration,
+    displayReversedDuration,
+    currentDuration,
+    trackDuration,
+  } = useDuration();
 
-  useEffect(() => {
-    console.log("isPlaying changed:", isPlaying);
-  }, [isPlaying]);
+  const progress = (currentDuration / trackDuration) * 100;
 
   return (
     <>
-      <div className={`${styles[variant] || " "}`}>
-        <p>Ppp</p>
-        <div className={styles.backBar}></div>
+      <div className={`${styles.backBar} ${styles[variant] || " "}`}>
+        <div
+          className={styles.frontBar}
+          style={{ backgroundColor: currentTheme, width: `${progress}%` }}
+        ></div>
+        <div className={styles.textWrap}>
+          <p>{displayDuration}</p>
+          <p>{displayReversedDuration}</p>
+        </div>
       </div>
     </>
   );

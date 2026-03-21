@@ -1,3 +1,17 @@
-.home p {
-    color: white;
+.backBar {
+    height: 4px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.frontBar {
+    height: 100%;
+    width: 40%;
+    border-radius: 2px;
+}
+
+.textWrap {
+    display: flex;
+    justify-content: space-between;
 }

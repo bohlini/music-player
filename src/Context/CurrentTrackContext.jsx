@@ -6,7 +6,7 @@ const CurrentTrackContext = createContext();
 
 export function CurrentTrackProvider({ children }) {
   const [currentTrack, setCurrentTrack] = useState();
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const { setCurrentTheme } = useThemes();
   const { tracks } = useTracks();
 
@@ -23,6 +23,9 @@ export function CurrentTrackProvider({ children }) {
     setCurrentTheme(track.theme);
     setIsPlaying(true);
   }
+  function handlePlay() {
+    setIsPlaying((prevState) => !prevState);
+  }
 
   return (
     <CurrentTrackContext.Provider
@@ -32,6 +35,7 @@ export function CurrentTrackProvider({ children }) {
         focusTrack,
         isPlaying,
         setIsPlaying,
+        handlePlay,
       }}
     >
       {children}

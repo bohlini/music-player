@@ -3,3 +3,10 @@
     align-items: center;
     gap: 1em;
 }
+
+.smallBtnContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+}

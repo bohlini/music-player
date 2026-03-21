@@ -1,24 +1,17 @@
-.playlists {
-    width: 100%;
-}
-
-.playlists .iconWrap {
+.playlists .iconWrap,
+.playlists span {
     display: none;
 }
 
-
-.playlists .flexWrap {
+.playlists {
     display: flex;
-    gap: 1em;
-}
-
-.playlists .trackInfo {
-    align-self: center;
+    justify-content: flex-end;
+    align-items: end;
 }
 
 .playlists .image {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
 }
 
 .cardContainer {
@@ -73,4 +66,18 @@
     letter-spacing: 0.50px;
     margin-top: 10px;
     margin-left: 2px;
+}
+
+.queueWrap {
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+}
+
+.queueImage {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    object-fit: cover;
+
 }

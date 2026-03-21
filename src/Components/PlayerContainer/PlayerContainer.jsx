@@ -1,10 +1,11 @@
-import TrackCard from "./TrackCard/TrackCard";
+import CurrentTrackCard from "../Card/TrackCard/CurrentTrackCard";
 import PlaybackMenu from "./PlaybackMenu/PlaybackMenu";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import TrackInfo from "./TrackInfo/TrackInfo";
 import styles from "./PlayerContainer.module.css";
 import { useThemes } from "../../Context/ThemeContext";
 import { useCurrentTrack } from "../../Context/CurrentTrackContext";
+import DeviceSelector from "../DeviceSelector.jsx/DeviceSelector";
 
 export default function PlayerContainer({ variant }) {
   const { currentTheme } = useThemes();
@@ -15,7 +16,11 @@ export default function PlayerContainer({ variant }) {
   } else
     return (
       <div className={`${styles.container} ${styles[variant] || ""}`}>
-        <TrackCard currentTheme={currentTheme} variant={variant} />
+        <CurrentTrackCard
+          currentTheme={currentTheme}
+          variant={variant}
+          type="playing"
+        />
 
         {variant === "playlists" ? (
           <div className={styles.rightSide}>

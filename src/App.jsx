@@ -9,6 +9,7 @@ import { TracksProvider } from "./Context/TracksContext";
 import { ThemeProvider } from "./Context/ThemeContext";
 import { FavoritesProvider } from "./Context/FavoritesContext";
 import { CurrentTrackProvider } from "./Context/CurrentTrackContext";
+import { DurationProvider } from "./Context/DurationContext";
 
 //School Notes
 import { UseRef } from "./SchoolNotes/UseRef";
@@ -21,16 +22,18 @@ export default function App() {
         <ThemeProvider>
           <FavoritesProvider>
             <CurrentTrackProvider>
-              <MainLayout>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/nowPlaying" element={<NowPlaying />} />
-                  <Route path="/playlists" element={<Playlists />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="useRef" element={<UseRef />} />
-                  <Route path="multiForm" element={<MultiForm />} />
-                </Routes>
-              </MainLayout>
+              <DurationProvider>
+                <MainLayout>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/nowPlaying" element={<NowPlaying />} />
+                    <Route path="/playlists" element={<Playlists />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="useRef" element={<UseRef />} />
+                    <Route path="multiForm" element={<MultiForm />} />
+                  </Routes>
+                </MainLayout>
+              </DurationProvider>
             </CurrentTrackProvider>
           </FavoritesProvider>
         </ThemeProvider>

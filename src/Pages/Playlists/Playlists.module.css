@@ -9,7 +9,6 @@
 
 ul li {
     list-style: none;
-    padding-top: 1em;
 }
 
 ul li a {
@@ -19,7 +18,7 @@ ul li a {
 .image {
     width: 60px;
     height: 60px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: -2.29637336730957px -2.29637336730957px 13.10233688354492px 0px rgba(255, 255, 255, 5%), 7.564516544342041px 7.564516544342041px 17.82257843017578px 6.051612854003906px rgba(0, 0, 0, 10%), -7.564516544342041px 7.564516544342041px 7.82257843017578px 0px rgba(0, 0, 0, 5%);
     opacity: .9;
     object-fit: cover;
@@ -37,4 +36,9 @@ ul li a {
 .playlistText {
     font-size: small;
     margin-top: 10px;
+}
+
+.listContainer {
+    display: flex;
+
 }

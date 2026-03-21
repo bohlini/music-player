@@ -3,10 +3,13 @@ import { useThemes } from "../../Context/ThemeContext";
 import styles from "../Playlists/Playlists.module.css";
 import { IoIosAdd } from "react-icons/io";
 import IconButton from "../../Components/Button/IconButton";
+import { MdPlayArrow } from "react-icons/md";
+import { RxPause } from "react-icons/rx";
 import { useTracks } from "../../Context/TracksContext";
 import PlayListCard from "../../Components/PlayListCard/PlayListCard";
 import { useCurrentTrack } from "../../Context/CurrentTrackContext";
 import PlayerContainer from "../../Components/PlayerContainer/PlayerContainer";
+import { useFavorites } from "../../Context/FavoritesContext";
 
 export default function Playlists() {
   const [playlists, setPlaylists] = useState([
@@ -15,9 +18,10 @@ export default function Playlists() {
     { name: "playlist3" },
   ]);
 
-  const { focusTrack, currentTrack } = useCurrentTrack();
+  const { focusTrack, isPlaying, handlePlay } = useCurrentTrack();
   const { currentTheme } = useThemes();
   const { tracks } = useTracks();
+  const { favorites } = useFavorites();
 
   function addPlaylist() {
     setPlaylists([...playlists, { name: +playlists.length + 1 }]);
@@ -28,8 +32,14 @@ export default function Playlists() {
     return list;
   }
 
-  function showTrackList() {
-    const list = tracks.map((track, index) => (
+  function displayFavorites() {
+    return favorites.map((track) => {
+      <h1>{track.title}</h1>;
+    });
+  }
+
+  function showTrackList(arr) {
+    const list = arr.map((track, index) => (
       <li key={index}>
         <img
           onClick={() => focusTrack(track)}
@@ -41,6 +51,12 @@ export default function Playlists() {
           <p className={styles.playlistTitle}>{track.title}</p>
           <p className={styles.playlistText}>{track.artist}</p>
         </div>
+        {/* <IconButton
+          onClick={() => handlePlay(track)}
+          size="smallWTheme"
+          icon={isPlaying ? <RxPause /> : <MdPlayArrow />}
+          currentTheme={currentTheme}
+        ></IconButton> */}
       </li>
     ));
     return list;
@@ -48,7 +64,7 @@ export default function Playlists() {
 
   return (
     <>
-      <div
+      {/* <div
         className={styles.sideBarContainer}
         style={{ backgroundColor: currentTheme }}
       >
@@ -62,9 +78,16 @@ export default function Playlists() {
           icon={<IoIosAdd />}
           currentTheme={currentTheme}
         ></IconButton>
-      </div>
-      <div>
-        <ul style={{ textAlign: "center" }}>{showTrackList()}</ul>
+      </div> */}
+      <div className={styles.listContainer}>
+        <div className={styles.allContainer}>
+          <h2>all</h2>
+          <ul>{showTrackList(tracks)}</ul>
+        </div>
+        <div className={styles.favsContainer}>
+          <h2>favs</h2>
+          <ul>{showTrackList(favorites)}</ul>
+        </div>
       </div>
     </>
   );

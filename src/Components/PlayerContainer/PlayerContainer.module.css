@@ -1,3 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.playlists {
+    align-self: flex-end;
+    margin-left: auto;
+    gap: 2em;
+    align-items: center;
+}
+
+.nowPlaying,
+.home {
+    align-self: flex-start;
+}
+
 .home,
 .nowPlaying {
     display: inline-flex;
@@ -14,20 +31,6 @@
 .home .controls,
 .nowPlaying .controls {
     margin-right: 25px;
-}
-
-.playlists {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 2em;
-}
-
-.playlists .rightSide {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    justify-content: center;
 }
 
 .controls {

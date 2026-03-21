@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { useLocation } from "react-router";
 import PlayerContainer from "../Components/PlayerContainer/PlayerContainer";
+import DeviceSelector from "../Components/DeviceSelector.jsx/DeviceSelector";
 
 export default function MainLayout({ children }) {
-  // const image = currentSong.img_url;
   const { currentTrack } = useCurrentTrack();
   const location = useLocation();
 
@@ -54,11 +53,11 @@ export default function MainLayout({ children }) {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems:
-              pageVariant() === "nowPlaying" ? "center" : "flex-start",
+            width: "100%",
           }}
         >
           <PlayerContainer variant={pageVariant()} />
+          {/* <DeviceSelector variant={pageVariant()} /> */}
         </div>
       </div>
     </>

@@ -5,19 +5,15 @@ import { IoPlaySkipBackOutline } from "react-icons/io5";
 import { IoPlaySkipForwardOutline } from "react-icons/io5";
 import { IoShuffleOutline } from "react-icons/io5";
 import { IoRefresh } from "react-icons/io5";
-import { useState } from "react";
 import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
 import { useTracks } from "../../../Context/TracksContext";
+import { useDuration } from "../../../Context/DurationContext";
 import styles from "./PlaybackMenu.module.css";
 
-export default function PlaybackMenu({ currentTheme }) {
-  const { isPlaying, setIsPlaying, currentTrack, focusTrack } =
-    useCurrentTrack();
+export default function PlaybackMenu({ currentTheme, variant }) {
+  const { isPlaying, currentTrack, focusTrack, handlePlay } = useCurrentTrack();
   const { tracks, setShuffled } = useTracks();
-
-  function handlePlay() {
-    setIsPlaying((prevState) => !prevState);
-  }
+  const { setCurrentDuration, currentDuration, resetDuration } = useDuration();
 
   function nextTrack() {
     const index = tracks.indexOf(currentTrack);
@@ -35,35 +31,65 @@ export default function PlaybackMenu({ currentTheme }) {
     setShuffled((prevState) => !prevState);
   }
 
-  function reset() {
-    console.log("reset duration");
-  }
   return (
     <>
-      <div className={styles.container}>
-        <IconButton
-          icon={<IoShuffleOutline />}
-          size="small"
-          onClick={shuffle}
-        />
-        <IconButton
-          icon={<IoPlaySkipBackOutline />}
-          size="small"
-          onClick={previusTrack}
-        />
-        <IconButton
-          icon={isPlaying ? <RxPause /> : <MdPlayArrow />}
-          size="large"
-          currentTheme={currentTheme}
-          onClick={handlePlay}
-        />
-        <IconButton
-          icon={<IoPlaySkipForwardOutline />}
-          size="small"
-          onClick={nextTrack}
-        />
-        <IconButton icon={<IoRefresh />} size="small" onClick={reset} />
-      </div>
+      {variant === "playlists" ? (
+        <div className={styles.container}>
+          <IconButton
+            icon={isPlaying ? <RxPause /> : <MdPlayArrow />}
+            size="large"
+            currentTheme={currentTheme}
+            onClick={handlePlay}
+          />
+          <div className={styles.smallBtnContainer}>
+            <IconButton
+              icon={<IoPlaySkipBackOutline />}
+              size="small"
+              onClick={previusTrack}
+            />
+            <IconButton
+              icon={<IoPlaySkipForwardOutline />}
+              size="small"
+              onClick={nextTrack}
+            />
+            <IconButton
+              icon={<IoShuffleOutline />}
+              size="small"
+              onClick={resetDuration}
+            />
+            <IconButton icon={<IoRefresh />} size="small" onClick={reset} />
+          </div>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <IconButton
+            icon={<IoShuffleOutline />}
+            size="small"
+            onClick={shuffle}
+          />
+          <IconButton
+            icon={<IoPlaySkipBackOutline />}
+            size="small"
+            onClick={previusTrack}
+          />
+          <IconButton
+            icon={isPlaying ? <RxPause /> : <MdPlayArrow />}
+            size="large"
+            currentTheme={currentTheme}
+            onClick={handlePlay}
+          />
+          <IconButton
+            icon={<IoPlaySkipForwardOutline />}
+            size="small"
+            onClick={nextTrack}
+          />
+          <IconButton
+            icon={<IoRefresh />}
+            size="small"
+            onClick={resetDuration}
+          />
+        </div>
+      )}
     </>
   );
 }
