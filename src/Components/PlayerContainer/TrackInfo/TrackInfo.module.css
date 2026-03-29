@@ -1,7 +1,11 @@
-.home,
-.nowPlaying {
-    align-self: flex-start;
+.profile {
+    display: none;
 }
+
+.nowPlaying {
+    margin-left: 2.3em;
+}
+
 
 .track {
     -webkit-background-clip: text !important;

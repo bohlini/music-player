@@ -1,46 +1,30 @@
-import CurrentTrackCard from "../Card/TrackCard/CurrentTrackCard";
-import PlaybackMenu from "./PlaybackMenu/PlaybackMenu";
-import ProgressBar from "./ProgressBar/ProgressBar";
-import TrackInfo from "./TrackInfo/TrackInfo";
+import { Text } from "../Typography/Text";
+import { HomePlayer } from "./HomePlayer/HomePlayer";
+import { NowPlayingPlayer } from "./NowPlayingPlayer/NowPlayingPlayer";
+import { PlaylistsPlayer } from "./PlaylistsPlayer/PlaylistsPlayer";
+import { useThemes } from "../Context/ThemeContext";
 import styles from "./PlayerContainer.module.css";
-import { useThemes } from "../../Context/ThemeContext";
-import { useCurrentTrack } from "../../Context/CurrentTrackContext";
-import DeviceSelector from "../DeviceSelector.jsx/DeviceSelector";
 
-export default function PlayerContainer({ variant }) {
-  const { currentTheme } = useThemes();
-  const { currentTrack } = useCurrentTrack();
+function PlayerContainer({ variant }) {
+  const { isLoading } = useThemes();
 
-  if (!currentTheme || !currentTrack) {
-    return <p>Loading...</p>;
-  } else
+  if (isLoading) return <Text type="meta">Loading...</Text>;
+  else
     return (
-      <div className={`${styles.container} ${styles[variant] || ""}`}>
-        <CurrentTrackCard
-          currentTheme={currentTheme}
-          variant={variant}
-          type="playing"
-        />
-
-        {variant === "playlists" ? (
-          <div className={styles.rightSide}>
-            <TrackInfo variant={variant} />
-            <div className={styles.controls}>
-              <PlaybackMenu currentTheme={currentTheme} variant={variant} />
-              <ProgressBar currentTheme={currentTheme} variant={variant} />
-            </div>
-          </div>
-        ) : (
-          <>
-            <div className={styles.info}>
-              <TrackInfo variant={variant} />
-            </div>
-            <div className={styles.controls}>
-              <PlaybackMenu currentTheme={currentTheme} variant={variant} />
-              <ProgressBar currentTheme={currentTheme} variant={variant} />
-            </div>
-          </>
-        )}
+      <div className={styles.container}>
+        <div className={`${styles[variant] || ""}`}>
+          {variant === "home" ? (
+            <HomePlayer variant={variant} />
+          ) : variant === "playlists" ? (
+            <PlaylistsPlayer variant={variant} />
+          ) : variant === "nowPlaying" ? (
+            <NowPlayingPlayer variant={variant} />
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
 }
+
+export { PlayerContainer };

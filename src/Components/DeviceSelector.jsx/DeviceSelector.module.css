@@ -6,15 +6,24 @@
     justify-content: center;
 }
 
-.home {
-    color: white;
+.wrapper:hover {
+    cursor: pointer;
 }
 
+.wrapper p {
+    padding-right: 1em;
+
+}
+
+.home,
+.nowPlaying,
 .playlists {
-    margin-left: auto;
-    padding: 1em 0em;
+    position: fixed;
+    right: 0;
+    bottom: 1em;
+    right: 40px;
 }
 
-.nowPlaying {
-    margin-left: auto;
+.profile {
+    display: none;
 }

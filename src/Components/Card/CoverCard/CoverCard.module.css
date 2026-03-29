@@ -1,0 +1,12 @@
+.image {
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 5px;
+    box-shadow: -5.29637336730957px -5.29637336730957px 33.10233688354492px 0px rgba(255, 255, 255, 20%), 7.564516544342041px 7.564516544342041px 37.82257843017578px 6.051612854003906px rgba(0, 0, 0, 20%), -7.564516544342041px 7.564516544342041px 37.82257843017578px 0px rgba(0, 0, 0, 20%);
+    opacity: .9;
+    transition: transform 0.3s ease;
+    /* border: .5px solid transparent; */
+    /* background:
+        linear-gradient(225deg, white 0%, transparent 20%) border-box;
+    ; */
+}

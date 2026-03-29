@@ -1,0 +1,59 @@
+.image {
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: -5.29637336730957px -5.29637336730957px 33.10233688354492px 0px rgba(255, 255, 255, 0.159), 7.564516544342041px 7.564516544342041px 37.82257843017578px 6.051612854003906px rgba(0, 0, 0, 10%), -7.564516544342041px 7.564516544342041px 37.82257843017578px 0px rgba(0, 0, 0, 10%);
+    opacity: .9;
+    border: .5px solid transparent;
+    background:
+        linear-gradient(225deg, white 0%, transparent 20%) border-box;
+    ;
+    transition: transform 0.3s ease;
+}
+
+.imageText {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    font-size: larger;
+    transition: transform 0.3s ease;
+}
+
+.image:hover,
+.imageText:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.imageContainer {
+    position: relative;
+    color: white;
+}
+
+.imageWrapper {
+    position: relative;
+}
+
+.typeWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    padding: 0em 1em;
+    width: 100%;
+}
+
+.iconWrapper {
+    position: absolute;
+    font-size: 1.5em;
+    color: white;
+    top: 15px;
+    left: 5px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.hideIconWrapper {
+    position: absolute;
+    top: 0;
+    display: none;
+}

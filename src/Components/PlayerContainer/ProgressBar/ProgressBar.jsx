@@ -1,9 +1,9 @@
 import styles from "./ProgressBar.module.css";
-import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
-import { useEffect } from "react";
-import { useDuration } from "../../../Context/DurationContext";
+import { useCurrentTrack } from "../../Context/CurrentTrackContext";
+import { useDuration } from "../../Context/DurationContext";
+import { Text } from "../../Typography/Text";
 
-export default function ProgressBar({ currentTheme, variant }) {
+function ProgressBar({ currentTheme, variant }) {
   const { currentTrack, isPlaying } = useCurrentTrack();
   const {
     displayDuration,
@@ -22,10 +22,12 @@ export default function ProgressBar({ currentTheme, variant }) {
           style={{ backgroundColor: currentTheme, width: `${progress}%` }}
         ></div>
         <div className={styles.textWrap}>
-          <p>{displayDuration}</p>
-          <p>{displayReversedDuration}</p>
+          <Text type="meta">{displayDuration}</Text>
+          <Text type="meta">{displayReversedDuration}</Text>
         </div>
       </div>
     </>
   );
 }
+
+export { ProgressBar };

@@ -1,8 +1,8 @@
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router";
-import { useThemes } from "../../Context/ThemeContext";
 
-export default function Navbar() {
+//ADD TEXT
+function Navbar() {
   return (
     <nav className={styles.list}>
       <ul>
@@ -22,3 +22,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export { Navbar };

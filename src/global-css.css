@@ -3,8 +3,15 @@
 }
 
 a.active {
-    color: white !important;
-    background-color: black;
+    text-decoration: underline;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li a {
+    text-decoration: none;
 }
 
 @keyframes zoomIn {

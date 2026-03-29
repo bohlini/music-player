@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 7em;
+    right: 40px;
+}
+
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-self: flex-start;
+    margin-left: 2em;
+}

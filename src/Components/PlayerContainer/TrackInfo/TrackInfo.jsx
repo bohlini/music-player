@@ -1,12 +1,19 @@
 import styles from "./TrackInfo.module.css";
-import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
+import { useCurrentTrack } from "../../Context/CurrentTrackContext";
+import { Text } from "../../Typography/Text";
 
-export default function TrackInfo({ variant }) {
+function TrackInfo({ variant }) {
   const { currentTrack } = useCurrentTrack();
-  return (
-    <div className={`${styles.trackInfo} ${styles[variant] || ""}`}>
-      <p className={styles.track}>{currentTrack.title}</p>
-      <p className={styles.artist}>{currentTrack.artist}</p>
-    </div>
-  );
+
+  if (!currentTrack) {
+    return <Text type="loading">Loading...</Text>;
+  } else
+    return (
+      <div className={`${styles.trackInfo} ${styles[variant] || ""}`}>
+        <Text type="bigTitle"> {currentTrack.title}</Text>
+        <Text type="bigArtist"> {currentTrack.artist}</Text>
+      </div>
+    );
 }
+
+export { TrackInfo };
