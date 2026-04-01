@@ -7,9 +7,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 75px;
+    height: 85px;
     margin-bottom: 0px;
-    border-bottom: .5px solid rgba(0, 0, 0, 0.479);
+    border-bottom: .5px solid rgba(255, 255, 255, 0.227);
+    gap: 0.5em;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.listWrap:first-child {
+    border-top: .5px solid rgba(255, 255, 255, 0.626);
+}
+
+.listWrap:hover {
+    background: rgba(255, 255, 255, 0.182);
 }
 
 li:last-child .listWrap {
@@ -17,11 +28,19 @@ li:last-child .listWrap {
 }
 
 .trackInfo {
-    margin-top: auto;
-    margin-left: .5em;
-    padding-right: 4em;
+    margin-left: .25em;
+    padding-right: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .rightSide {
     margin-left: auto;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.listWrap:hover .rightSide {
+    opacity: 1;
 }

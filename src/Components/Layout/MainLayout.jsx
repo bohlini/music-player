@@ -1,19 +1,21 @@
 import { useLocation } from "react-router";
-import { Navbar } from "../Navbar/Navbar";
-import { PlayerContainer } from "../PlayerContainer/PlayerContainer";
-import { DeviceSelector } from "../DeviceSelector.jsx/DeviceSelector";
 import { useCurrentTrack } from "../Context/CurrentTrackContext";
+import { useWindowWidth } from "../Hooks/useWindowWidth";
+import { Navbar } from "../Navbar/Navbar";
+import { DeviceSelector } from "../DeviceSelector.jsx/DeviceSelector";
 
 function MainLayout({ children }) {
   const { currentTrack } = useCurrentTrack();
+  const { windowWidth } = useWindowWidth();
+
+  const mobileWindow = windowWidth <= 768;
   const location = useLocation();
 
   const pageVariant = () => {
-    if (location.pathname === "/") return "home";
-    if (location.pathname === "/nowPlaying") return "nowPlaying";
+    if (location.pathname === "/") return "nowPlaying";
     if (location.pathname === "/playlists") return "playlists";
-    if (location.pathname === "/profile") return "profile"
-    else 'default'
+    if (location.pathname === "/profile") return "profile";
+    else return "default";
   };
 
   return (
@@ -42,17 +44,17 @@ function MainLayout({ children }) {
           zIndex: -1,
         }}
       />
+
       <div
         style={{
-          margin: "0 40px",
+          margin: mobileWindow ? "0 10px" : "0 40px",
           zIndex: 1,
-          overflowX: "hidden",
+          // overflowX: "hidden",
         }}
       >
         <Navbar />
         {children}
         <div>
-          <PlayerContainer variant={pageVariant()} />
           <DeviceSelector variant={pageVariant()} />
         </div>
       </div>
@@ -60,4 +62,4 @@ function MainLayout({ children }) {
   );
 }
 
-export {MainLayout}
+export { MainLayout };

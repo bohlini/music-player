@@ -6,6 +6,7 @@
     border-radius: 5px;
     opacity: .9;
     cursor: pointer;
+    display: block;
     border: .5px solid transparent;
     background:
         linear-gradient(225deg, white 0%, transparent 20%) border-box;

@@ -27,11 +27,6 @@
     border-bottom: 1px solid black;
 }
 
-.trackInfo {
-    margin-left: 1em;
-    padding-right: 4em;
-}
-
 .rightSide {
     margin-left: auto;
 }
@@ -45,13 +40,26 @@
     scrollbar-width: none;
 }
 
-/* .list::after {
-    content: '';
-    min-width: 50px;
-    display: block;
-    flex-shrink: 0;
-} */
-
 .list::-webkit-scrollbar {
     display: none;
+}
+
+.icon {
+    font-size: 2em;
+    margin-bottom: -5px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .listWrap {
+        height: 80px;
+    }
+
+    .icon {
+        font-size: 1.5em;
+    }
+
+    .trackInfo {
+        margin-left: 0;
+    }
 }

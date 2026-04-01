@@ -15,10 +15,12 @@ function TracksProvider({ children }) {
     setTracks(data);
   }, [data]);
 
+  const values = {
+    tracks,
+  };
+
   return (
-    <TracksContext.Provider value={{ tracks }}>
-      {children}
-    </TracksContext.Provider>
+    <TracksContext.Provider value={values}>{children}</TracksContext.Provider>
   );
 }
 

@@ -1,8 +1,5 @@
 function Profile() {
-  return (
-    <div>
-    </div>
-  );
+  return <></>;
 }
 
-export {Profile}
+export { Profile };

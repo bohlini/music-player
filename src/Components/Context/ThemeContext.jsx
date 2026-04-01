@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext, useMemo } from "react";
+import { useTracks } from "./TracksContext";
 import { useFetch } from "../Hooks/useFetch";
-import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const ThemeContext = createContext();
 
@@ -8,25 +8,22 @@ function ThemeProvider({ children }) {
   const [themes, setThemes] = useState([]);
   const [currentTheme, setCurrentTheme] = useState(null);
 
-  const { data, isLoading } = useFetch(
-    "https://api-database-c4.vercel.app/songs/",
-  );
-  // const { storedValue, setStoredValue } = useLocalStorage("currentTheme", null); //We'll see if this is needed
+  const { tracks, isLoading } = useTracks();
 
   useEffect(() => {
     if (isLoading) return;
-    const extractedThemes = data.map((dataObj) => dataObj.theme);
+    const extractedThemes = tracks.map((track) => track.theme);
     setThemes(extractedThemes);
-  }, [data]);
+  }, [tracks]);
 
-  // const values = useMemo(() => {
-  //   themes, currentTheme, setCurrentTheme
-  // })
+  const values = {
+    currentTheme,
+    setCurrentTheme,
+    themes,
+  };
 
   return (
-    <ThemeContext.Provider value={{ currentTheme, setCurrentTheme, themes }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={values}>{children}</ThemeContext.Provider>
   );
 }
 

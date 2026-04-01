@@ -1,14 +1,19 @@
-import { createContext, useState, useContext, useEffect, useRef } from "react";
-import { useCurrentTrack } from "./CurrentTrackContext";
+import {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { useTracks } from "./TracksContext";
-import { useLocalStorage } from "../Hooks/useLocalStorage";
+import { useCurrentTrack } from "./CurrentTrackContext";
 
 const DurationContext = createContext();
 
 function DurationProvider({ children }) {
   const { currentTrack, isPlaying, focusTrack } = useCurrentTrack();
   const { tracks } = useTracks();
-  // const { storedValue, setStoredValue } = useLocalStorage("Duration", null);
 
   const [trackDuration, setTrackDuration] = useState(null);
   const [currentDuration, setCurrentDuration] = useState(null);
@@ -67,11 +72,6 @@ function DurationProvider({ children }) {
     return () => clearInterval(id);
   }, [isPlaying, currentTrack, trackDuration]);
 
-  //not worki
-  // useEffect(() => {
-  //   setStoredValue(currentDuration)
-  // }, [currentDuration])
-
   useEffect(() => {
     const minutes = Math.floor(currentDuration / 60);
     const seconds = currentDuration % 60;
@@ -94,21 +94,21 @@ function DurationProvider({ children }) {
     );
   }, [currentDuration, trackDuration]);
 
-  function resetDuration() {
+  const resetDuration = useCallback(() => {
     startRef.current = 0;
     setCurrentDuration(0);
-  }
+  }, []);
+
+  const values = {
+    displayDuration,
+    displayReversedDuration,
+    currentDuration,
+    trackDuration,
+    resetDuration,
+  };
 
   return (
-    <DurationContext.Provider
-      value={{
-        displayDuration,
-        displayReversedDuration,
-        currentDuration,
-        trackDuration,
-        resetDuration,
-      }}
-    >
+    <DurationContext.Provider value={values}>
       {children}
     </DurationContext.Provider>
   );

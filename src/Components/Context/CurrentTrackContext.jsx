@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import { useTracks } from "./TracksContext";
 import { useThemes } from "./ThemeContext";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
@@ -6,13 +12,13 @@ import { useLocalStorage } from "../Hooks/useLocalStorage";
 const CurrentTrackContext = createContext();
 
 function CurrentTrackProvider({ children }) {
-  const [currentTrack, setCurrentTrack] = useState();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const { setCurrentTheme } = useThemes();
   const { tracks } = useTracks();
   const [storedValue, setStoredValue] = useLocalStorage("currentTrack", null);
+
+  const [currentTrack, setCurrentTrack] = useState();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (!currentTrack && tracks?.length > 0) {
@@ -23,13 +29,13 @@ function CurrentTrackProvider({ children }) {
     }
   }, [tracks]);
 
-  function focusTrack(track) {
+  const focusTrack = useCallback((track) => {
     if (!track) return;
     setStoredValue(track);
     setCurrentTrack(track);
     setCurrentTheme(track.theme);
     setIsPlaying(true);
-  }
+  }, []);
 
   useEffect(() => {
     if (!currentTrack) return;
@@ -39,24 +45,24 @@ function CurrentTrackProvider({ children }) {
     setCurrentIndex(index);
   }, [currentTrack]);
 
-  function handlePlay() {
+  const handlePlay = useCallback(() => {
     setIsPlaying((prevState) => !prevState);
-  }
+  }, []);
+
+  const values = {
+    setCurrentTrack,
+    currentTrack,
+    focusTrack,
+    isPlaying,
+    setIsPlaying,
+    handlePlay,
+    currentIndex,
+    setCurrentIndex,
+  };
 
   //make const value and wrap in useMemo (or in fetch Hook??)
   return (
-    <CurrentTrackContext.Provider
-      value={{
-        setCurrentTrack,
-        currentTrack,
-        focusTrack,
-        isPlaying,
-        setIsPlaying,
-        handlePlay,
-        currentIndex,
-        setCurrentIndex,
-      }}
-    >
+    <CurrentTrackContext.Provider value={values}>
       {children}
     </CurrentTrackContext.Provider>
   );

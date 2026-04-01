@@ -1,8 +1,16 @@
-import { createContext, useState, useContext, useMemo } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import { useFavorites } from "./FavoritesContext";
 import { useTracks } from "./TracksContext";
 import { useQueue } from "./QueueContext";
 import mockPlaylists from "../../mockData/mockPlaylists.json";
+import mockImages from "../../mockData/mockImages.json";
 
 const PlaylistContext = createContext();
 
@@ -10,6 +18,7 @@ function PlaylistProvider({ children }) {
   const { favorites } = useFavorites();
   const { tracks } = useTracks();
   const { queue } = useQueue();
+  const { newPlaylistUrl } = mockImages.URLs;
 
   const [playlists, setPlaylists] = useState(mockPlaylists.playlists);
   const [activeList, setActiveList] = useState("favorites");
@@ -29,37 +38,44 @@ function PlaylistProvider({ children }) {
     );
   }, [playlists]);
 
-  // const listMap = {
-  //   Favorites: "favorites",
-  //   "My Playlist": "tracks",
-  //   "My Playlist 2": "empty",
-  // };
-
-  function addPlaylist() {
+  const addPlaylist = useCallback(() => {
     if (!playlists) return;
     const updatedPlaylists = [
-      ...playlists,
       {
-        name: `My Playlist ${playlists.length}`,
-        id: "tracks",
-        cover:
-          "https://images.unsplash.com/photo-1672073314527-cd2d83182992?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        amount: tracks.length,
+        name: `My Playlist ${playlists.length + 1}`,
+        id: crypto.randomUUID(),
+        cover: newPlaylistUrl,
+        amount: 0,
       },
+      ...playlists,
     ];
     setPlaylists(updatedPlaylists);
-  }
+  }, [playlists]);
 
-  function changePlayList(playlist) {
+  const changePlayList = useCallback((playlist) => {
     if (!playlist) return;
     setActiveList(playlist);
-  }
+  }, []);
 
-  function deletePlaylist(name) {
-    if (!playlists) return;
-    const updatedPlaylist = playlists.filter((list) => list.name !== name);
-    setPlaylists(updatedPlaylist);
-  }
+  const deletePlaylist = useCallback(
+    (name) => {
+      if (!playlists) return;
+      const updatedPlaylist = playlists.filter((list) => list.name !== name);
+      setPlaylists(updatedPlaylist);
+    },
+    [playlists],
+  );
+
+  const renamePlaylist = useCallback(
+    (oldName, newName) => {
+      if (!newName.trim()) return;
+      const updatedPlaylist = playlists.map((playlist) =>
+        playlist.name === oldName ? { ...playlist, name: newName } : playlist,
+      );
+      setPlaylists(updatedPlaylist);
+    },
+    [playlists],
+  );
 
   const values = {
     playlists,
@@ -67,9 +83,11 @@ function PlaylistProvider({ children }) {
     addPlaylist,
     changePlayList,
     deletePlaylist,
+    renamePlaylist,
     dataMap,
     listMap,
   };
+
   return (
     <PlaylistContext.Provider value={values}>
       {children}

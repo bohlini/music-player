@@ -1,4 +1,10 @@
-import { createContext, useState, useContext, useEffect, useMemo } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const FavoritesContext = createContext();
@@ -7,30 +13,34 @@ function FavoritesProvider({ children }) {
   const [storedValue, setStoredValue] = useLocalStorage("Favorites", []);
   const [favorites, setFavorites] = useState(storedValue);
 
-  function setLike(track) {
+  const setLike = useCallback((track) => {
     setFavorites((prev) =>
       prev.find((t) => t.title === track.title)
         ? prev.filter((t) => t.title !== track.title)
         : [...prev, track],
     );
-  }
+  }, []);
 
-  function isLiked(track) {
-    return favorites.some((t) => t.title === track.title);
-  }
+  const isLiked = useCallback(
+    (track) => {
+      return favorites.some((t) => t.title === track.title);
+    },
+    [favorites],
+  );
 
   useEffect(() => {
     setStoredValue(favorites);
   }, [favorites]);
 
-  // const values = useMemo(() => {
-  //   favorites, setFavorites, isLiked
-  // }, [])
+  const values = {
+    favorites,
+    setFavorites,
+    isLiked,
+    setLike,
+  };
 
   return (
-    <FavoritesContext.Provider
-      value={{ favorites, setFavorites, isLiked, setLike }}
-    >
+    <FavoritesContext.Provider value={values}>
       {children}
     </FavoritesContext.Provider>
   );

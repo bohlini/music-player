@@ -10,20 +10,26 @@
     cursor: pointer;
 }
 
-.wrapper p {
-    padding-right: 1em;
-
-}
-
-.home,
 .nowPlaying,
 .playlists {
     position: fixed;
     right: 0;
-    bottom: 1em;
+    bottom: .5em;
     right: 40px;
 }
 
 .profile {
     display: none;
+}
+
+@media (max-width: 768px) {
+
+    .nowPlaying,
+    .playlists {
+        font-size: x-small;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
 }

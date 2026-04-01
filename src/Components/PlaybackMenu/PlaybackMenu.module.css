@@ -10,3 +10,14 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        gap: 0.5em;
+        margin-top: 0;
+    }
+
+    .playlists {
+        padding-top: 120px;
+    }
+}

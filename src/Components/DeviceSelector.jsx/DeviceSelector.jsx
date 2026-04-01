@@ -1,12 +1,13 @@
 import { FaChromecast } from "react-icons/fa";
 import { IoHeadsetOutline } from "react-icons/io5";
-import styles from "./DeviceSelector.module.css";
 import { useThemes } from "../Context/ThemeContext";
-import { Text } from "../Typography/Text";
+import { Text } from "../Text/Text";
+import styles from "./DeviceSelector.module.css";
 
 function DeviceSelector({ variant }) {
   const { currentTheme } = useThemes();
-  const whiteText = currentTheme === "#000000" ? "white" : "black";
+  const whiteText =
+    !currentTheme || currentTheme === "#000000" ? "#ffffff" : "#000000";
 
   return (
     <div

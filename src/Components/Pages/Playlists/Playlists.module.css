@@ -34,39 +34,38 @@
     margin-left: auto;
 }
 
-/* .playlistTitle {
-    margin-top: -1px
-} */
-
 .playlistText {
     margin-top: 10px;
 }
-
-/* .listContainer {
-    display: flex;
-
-} */
-/* 
-.parentContainer {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-} */
 
 .playlistsContainer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    padding: -20px 2em;
 }
-
-/* .listContainer {
-    justify-content: flex-end;
-    display: flex;
-    flex-direction: row;
-} */
 
 .tabsContainer {
     display: flex;
     flex-direction: row;
     gap: 1em;
+    list-style: none;
+    margin-top: 1em;
+    flex-wrap: wrap;
+}
+
+.fadeOut {
+    mask-image: linear-gradient(to right, black 100%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 100%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+    .playlistsContainer {
+        width: 100%;
+    }
+
+    .fadeOut {
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
 }

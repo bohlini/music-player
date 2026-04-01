@@ -1,48 +1,27 @@
-import { useState, useRef, useEffect } from "react";
-import { IoIosAdd } from "react-icons/io";
-import { MdPlayArrow } from "react-icons/md";
-import { RxPause } from "react-icons/rx";
-import { IoEllipsisHorizontalOutline } from "react-icons/io5";
-import { IconButton } from "../../Button/Button";
-import CoverCard from "../../Card/CoverCard/CoverCard";
-import { PlayList } from "../../List/PlayList/PlayList";
-import { HeaderCard } from "../../Card/HeaderCard/HeaderCard";
-import { useThemes } from "../../Context/ThemeContext";
-import { useTracks } from "../../Context/TracksContext";
-import { useCurrentTrack } from "../../Context/CurrentTrackContext";
-import { useFavorites } from "../../Context/FavoritesContext";
-import { useWindowWidth } from "../../Hooks/useWindowWidth";
-import { QueueList } from "../../List/QueueList/QueueList";
-import styles from "../Playlists/Playlists.module.css";
-import { useQueue } from "../../Context/QueueContext";
 import { usePlaylist } from "../../Context/PlaylistContext";
+import { useTracks } from "../../Context/TracksContext";
+import { PlayList } from "../../List/PlayList/PlayList";
+import { QueueList } from "../../List/QueueList/QueueList";
 import { PlaylistTabs } from "../../List/PlaylistTabs/PlaylistTabs";
+import { PlaylistsPlayer } from "./PlaylistsPlayer/PlaylistsPlayer";
+import { Text } from "../../Text/Text";
+import styles from "../Playlists/Playlists.module.css";
 
 function Playlists() {
-  const { currentTheme } = useThemes();
-  const { tracks } = useTracks();
-  const { favorites } = useFavorites();
-  const { queue } = useQueue();
   const { activeList, changePlayList, dataMap, listMap } = usePlaylist();
-  const { windowWidth } = useWindowWidth();
+  const { isLoading } = useTracks();
 
-  const bigWindow = windowWidth >= 1600;
-
+  if (isLoading) return <Text type="meta">Loading...</Text>;
   return (
     <>
       <div className={styles.playlistsContainer}>
         <PlayList onChangePlaylist={changePlayList} listMap={listMap} />
       </div>
 
-      <div
-        style={{
-          maskImage: `linear-gradient(to right, black 100%, transparent 100%)`,
-          WebkitMaskImage: `linear-gradient(to right, black 100%, transparent 100%)`,
-        }}
-      >
-        <div className={styles.tabsContainer}>
+      <div className={styles.fadeOut}>
+        <ul className={styles.tabsContainer}>
           <PlaylistTabs />
-        </div>
+        </ul>
 
         <QueueList
           limit={dataMap[activeList]?.length ?? 0}
@@ -50,6 +29,8 @@ function Playlists() {
           fadeOut={false}
         />
       </div>
+
+      <PlaylistsPlayer />
     </>
   );
 }

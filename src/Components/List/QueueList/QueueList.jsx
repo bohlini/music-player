@@ -4,9 +4,7 @@ import { useFavorites } from "../../Context/FavoritesContext";
 import { useCurrentTrack } from "../../Context/CurrentTrackContext";
 import { useQueue } from "../../Context/QueueContext";
 import { QueueCard } from "../../Card/QueueCard/QueueCard";
-import { Text } from "../../Typography/Text";
-import { TrackInfo } from "../../PlayerContainer/TrackInfo/TrackInfo";
-import { IoEllipsisHorizontalOutline } from "react-icons/io5";
+import { Text } from "../../Text/Text";
 import styles from "./QueueList.module.css";
 
 function QueueList({ limit, list, fadeOut }) {
@@ -15,21 +13,21 @@ function QueueList({ limit, list, fadeOut }) {
   const { currentTrack, focusTrack } = useCurrentTrack();
   const { favorites } = useFavorites();
   const { tracks } = useTracks();
-  console.log(currentTheme);
 
   const cutOffArray = list ? list.slice(0, limit || list.length) : queue;
 
   function displayList() {
-    if (!cutOffArray || !currentTheme) return;
+    if (!cutOffArray || !currentTheme) return null;
     const items = cutOffArray.map((track, index) => (
       <li key={index}>
         <div
           className={styles.listWrap}
+          onClick={() => focusTrack(track)}
           style={
             fadeOut
               ? {
-                  maskImage: `linear-gradient(to right, black 50%, transparent 100%)`,
-                  WebkitMaskImage: `linear-gradient(to right, black 50%, transparent 100%)`,
+                  maskImage: `linear-gradient(to right, black 40%, transparent 100%)`,
+                  WebkitMaskImage: `linear-gradient(to right, black 40%, transparent 100%)`,
                 }
               : {
                   maskImage: `linear-gradient(to right, black 10%, transparent 80%)`,
@@ -43,9 +41,6 @@ function QueueList({ limit, list, fadeOut }) {
           <div className={styles.trackInfo}>
             <Text type="smallTitle">{track.title}</Text>
             <Text type="smallArtist">{track.artist}</Text>
-          </div>
-          <div className={styles.rightSide}>
-            <IoEllipsisHorizontalOutline onClick={() => console.log(track)} />
           </div>
         </div>
       </li>

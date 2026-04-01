@@ -7,6 +7,7 @@ const QueueContext = createContext();
 function QueueProvider({ children }) {
   const { tracks, isLoading } = useTracks();
   const { currentTrack, currentIndex, setCurrentIndex } = useCurrentTrack();
+
   const [queue, setQueue] = useState(tracks);
 
   useEffect(() => {

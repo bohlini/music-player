@@ -1,9 +1,13 @@
 :root {
-    font-family: "Tilt Neon", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
-a.active {
-    text-decoration: underline;
+a:global(.active) p {
+    color: #eee;
+}
+
+ul {
+    padding-inline-start: 0px;
 }
 
 ul li {

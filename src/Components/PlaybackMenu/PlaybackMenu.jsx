@@ -4,43 +4,34 @@ import { IoPlaySkipBackOutline } from "react-icons/io5";
 import { IoPlaySkipForwardOutline } from "react-icons/io5";
 import { IoShuffleOutline } from "react-icons/io5";
 import { IoRefresh } from "react-icons/io5";
-import { IconButton } from "../../Button/Button";
-import { useCurrentTrack } from "../../Context/CurrentTrackContext";
-import { useTracks } from "../../Context/TracksContext";
-import { useDuration } from "../../Context/DurationContext";
+import { useCurrentTrack } from "../Context/CurrentTrackContext";
+import { useTracks } from "../Context/TracksContext";
+import { useDuration } from "../Context/DurationContext";
+import { IconButton } from "../Button/Button";
 import styles from "./PlaybackMenu.module.css";
 
 function PlaybackMenu({ currentTheme, variant }) {
-  const { isPlaying, focusTrack, handlePlay, currentIndex } =
-    useCurrentTrack();
+  const { isPlaying, focusTrack, handlePlay, currentIndex } = useCurrentTrack();
   const { tracks } = useTracks();
   const { resetDuration } = useDuration();
 
   function nextTrack() {
-    if (currentIndex === null || !tracks) return
+    if (currentIndex === null || !tracks) return;
     if (tracks[currentIndex + 1]) focusTrack(tracks[currentIndex + 1]);
     else focusTrack(tracks[0]);
   }
 
   function previusTrack() {
-    if (currentIndex === null || !tracks) return
+    if (currentIndex === null || !tracks) return;
     if (tracks[currentIndex - 1]) focusTrack(tracks[currentIndex - 1]);
     else focusTrack(tracks[tracks.length - 1]);
-  }
-
-  function shuffle() {
-    setShuffled((prevState) => !prevState);
   }
 
   return (
     <>
       {variant === "nowPlaying" ? (
         <div className={styles.container}>
-          <IconButton
-            icon={<IoShuffleOutline />}
-            size="small"
-            onClick={shuffle}
-          />
+          <IconButton icon={<IoShuffleOutline />} size="small" />
           <IconButton
             icon={<IoPlaySkipBackOutline />}
             size="small"
@@ -71,7 +62,7 @@ function PlaybackMenu({ currentTheme, variant }) {
             currentTheme={currentTheme}
             onClick={handlePlay}
           />
-        <div className={styles.smallBtnContainer}>
+          <div className={styles.smallBtnContainer}>
             <IconButton
               icon={<IoPlaySkipBackOutline />}
               size="small"
@@ -82,16 +73,8 @@ function PlaybackMenu({ currentTheme, variant }) {
               size="small"
               onClick={nextTrack}
             />
-            <IconButton
-              icon={<IoShuffleOutline />}
-              size="small"
-              onClick={resetDuration}
-            />
-            <IconButton
-              icon={<IoRefresh />}
-              size="small"
-              onClick={resetDuration}
-            />
+            <IconButton icon={<IoShuffleOutline />} size="small" />
+            <IconButton icon={<IoRefresh />} size="small" />
           </div>
         </div>
       )}
@@ -99,4 +82,4 @@ function PlaybackMenu({ currentTheme, variant }) {
   );
 }
 
-export {PlaybackMenu}
+export { PlaybackMenu };

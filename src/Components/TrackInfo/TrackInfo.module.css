@@ -1,12 +1,3 @@
-.profile {
-    display: none;
-}
-
-.nowPlaying {
-    margin-left: 2.3em;
-}
-
-
 .track {
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent;
@@ -17,18 +8,20 @@
             rgba(0, 0, 0, 0) 70%);
     background-clip: text;
     color: transparent;
-    font-size: 24px;
-    font-weight: 500;
     letter-spacing: 0.50px;
     width: 100%;
     margin-bottom: 0;
 }
 
 .artist {
-    color: #000000;
-    font-family: "Roboto-Regular", Helvetica;
-    font-size: 14px;
-    font-weight: 300;
     letter-spacing: 0.50px;
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .playlists {
+        margin-left: -130px;
+        margin-bottom: -20px;
+        margin-top: -30px;
+    }
 }

@@ -1,0 +1,114 @@
+.meta {
+    font-size: .75em;
+}
+
+.nav {
+    text-transform: uppercase;
+    font-size: 1.3em;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Big Shoulders Inline', sans-serif;
+    color: var(--theme);
+}
+
+.nav:hover {
+    color: #eee;
+}
+
+.bigTitle {
+    font-size: 1.6em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 0.1px;
+    margin-top: 1.5em;
+}
+
+.bigArtist {
+    font-size: .75em;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    opacity: .75;
+    line-height: 1;
+}
+
+.smallTitle {
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    line-height: 0.3;
+}
+
+.smallArtist {
+    font-size: .7em;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.label {
+    text-transform: uppercase;
+    font-size: 0.5em;
+    opacity: .85;
+    color: var(--theme)
+}
+
+.playlistTitle {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.playlistUnderTitle {
+    font-size: 1em;
+    font-weight: 200;
+    color: #ffffff;
+}
+
+.tab {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1em;
+    color: #4a4a4a;
+    font-family: 'Big Shoulders Inline', sans-serif;
+}
+
+.tab:hover {
+    color: #eee;
+}
+
+@media (max-width: 768px) {
+    .bigTitle {
+        font-size: 1.2em;
+    }
+
+    .bigArtist {
+        font-size: .6em;
+    }
+
+    .smallTitle {
+        font-size: .9em;
+    }
+
+    .smallArtist {
+        font-size: .6em;
+    }
+
+    .tab {
+        font-size: small;
+    }
+
+    .label {
+        font-size: x-small;
+    }
+
+    .playlistUnderTitle {
+        font-size: small;
+    }
+
+    .playlistTitle {
+        font-size: large;
+    }
+
+    .nav {
+        font-size: .8em;
+    }
+}

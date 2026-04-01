@@ -9,29 +9,21 @@
         linear-gradient(225deg, white 0%, transparent 20%) border-box;
     ;
     transition: transform 0.3s ease;
+    width: 20em;
+    height: 23em;
 }
 
-.imageText {
-    position: absolute;
-    top: 2em;
-    left: 2em;
-    font-size: larger;
-    transition: transform 0.3s ease;
-}
-
-.image:hover,
-.imageText:hover {
+.image:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
 
-.imageContainer {
-    position: relative;
-    color: white;
-}
-
 .imageWrapper {
     position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 20em;
+    height: 23em;
 }
 
 .typeWrapper {
@@ -40,6 +32,10 @@
     left: 15px;
     padding: 0em 1em;
     width: 100%;
+}
+
+.underTitle {
+    margin-bottom: -10px;
 }
 
 .iconWrapper {
@@ -56,4 +52,46 @@
     position: absolute;
     top: 0;
     display: none;
+}
+
+.input {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+    width: 80%;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1.85;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .image {
+        width: 10em;
+        height: 13em;
+    }
+
+    .imageWrapper {
+        width: 10em;
+        height: 13em;
+    }
+
+    .typeWrapper {
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        padding: 0em .75em;
+        width: 100%;
+
+    }
+
+    .input {
+        font-size: 1.12em;
+        line-height: 1.3;
+        padding: 0;
+    }
 }
