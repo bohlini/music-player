@@ -1,12 +1,12 @@
 import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { Text } from "../Text/Text";
-import styles from "./TrackInfo.module.css";
+import styles from "./TackInfo.module.css";
 
 function TrackInfo({ variant }) {
   const { currentTrack } = useCurrentTrack();
 
   if (!currentTrack) {
-    return <Text type="loading">Loading...</Text>;
+    return <Text type="meta">Loading...</Text>;
   } else
     return (
       <div className={`${styles.trackInfo} ${styles[variant] || ""}`}>

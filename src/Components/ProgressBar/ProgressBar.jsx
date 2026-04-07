@@ -1,10 +1,8 @@
-import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { useDuration } from "../Context/DurationContext";
 import { Text } from "../Text/Text";
 import styles from "./ProgressBar.module.css";
 
 function ProgressBar({ currentTheme, variant }) {
-  const { currentTrack, isPlaying } = useCurrentTrack();
   const {
     displayDuration,
     displayReversedDuration,
