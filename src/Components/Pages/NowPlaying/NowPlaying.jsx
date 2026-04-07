@@ -1,5 +1,5 @@
 import { useQueue } from "../../Context/QueueContext";
-import { useThemes } from "../../Context/ThemeContext";
+import { useCurrentTrack } from "../../Context/CurrentTrackContext";
 import { useTracks } from "../../Context/TracksContext";
 import { TrackCard } from "../../Card/TrackCard/TrackCard";
 import { TrackInfo } from "../../TrackInfo/TrackInfo";
@@ -12,7 +12,7 @@ import styles from "./NowPlaying.module.css";
 
 function NowPlaying() {
   const { isLoading } = useTracks();
-  const { currentTheme } = useThemes();
+  const { currentTheme } = useCurrentTrack();
   const { queue } = useQueue();
   const { windowWidth } = useWindowWidth();
 

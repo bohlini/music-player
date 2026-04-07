@@ -6,19 +6,18 @@ import {
   useCallback,
 } from "react";
 import { useTracks } from "./TracksContext";
-import { useThemes } from "./ThemeContext";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const CurrentTrackContext = createContext();
 
 function CurrentTrackProvider({ children }) {
-  const { setCurrentTheme } = useThemes();
   const { tracks } = useTracks();
-  const [storedValue, setStoredValue] = useLocalStorage("currentTrack", null);
 
-  const [currentTrack, setCurrentTrack] = useState();
+  const [storedValue, setStoredValue] = useLocalStorage("currentTrack", null);
+  const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentTheme, setCurrentTheme] = useState(null);
 
   useEffect(() => {
     if (!currentTrack && tracks?.length > 0) {
@@ -58,9 +57,9 @@ function CurrentTrackProvider({ children }) {
     handlePlay,
     currentIndex,
     setCurrentIndex,
+    currentTheme,
   };
 
-  //make const value and wrap in useMemo (or in fetch Hook??)
   return (
     <CurrentTrackContext.Provider value={values}>
       {children}

@@ -5,8 +5,8 @@ import { useCurrentTrack } from "./CurrentTrackContext";
 const QueueContext = createContext();
 
 function QueueProvider({ children }) {
-  const { tracks, isLoading } = useTracks();
-  const { currentTrack, currentIndex, setCurrentIndex } = useCurrentTrack();
+  const { tracks } = useTracks();
+  const { currentTrack, setCurrentIndex } = useCurrentTrack();
 
   const [queue, setQueue] = useState(tracks);
 

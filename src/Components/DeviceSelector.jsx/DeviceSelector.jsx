@@ -1,11 +1,12 @@
 import { FaChromecast } from "react-icons/fa";
 import { IoHeadsetOutline } from "react-icons/io5";
-import { useThemes } from "../Context/ThemeContext";
+import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { Text } from "../Text/Text";
 import styles from "./DeviceSelector.module.css";
 
 function DeviceSelector({ variant }) {
-  const { currentTheme } = useThemes();
+  const { currentTheme } = useCurrentTrack();
+
   const whiteText =
     !currentTheme || currentTheme === "#000000" ? "#ffffff" : "#000000";
 

@@ -49,7 +49,6 @@ function MainLayout({ children }) {
         style={{
           margin: mobileWindow ? "0 10px" : "0 40px",
           zIndex: 1,
-          // overflowX: "hidden",
         }}
       >
         <Navbar />

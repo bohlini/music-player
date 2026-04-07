@@ -1,8 +1,8 @@
-import { useThemes } from "../Context/ThemeContext";
+import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import styles from "./Text.module.css";
 
 function Text({ type, tag = "p", children, className = "", ...rest }) {
-  const { currentTheme } = useThemes();
+  const { currentTheme } = useCurrentTrack();
 
   const Tag = tag;
 

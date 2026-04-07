@@ -2,11 +2,11 @@ import { TrackCard } from "../../../Card/TrackCard/TrackCard";
 import { TrackInfo } from "../../../TrackInfo/TrackInfo";
 import { ProgressBar } from "../../../ProgressBar/ProgressBar";
 import { PlaybackMenu } from "../../../PlaybackMenu/PlaybackMenu";
-import { useThemes } from "../../../Context/ThemeContext";
+import { useCurrentTrack } from "../../../Context/CurrentTrackContext";
 import styles from "./PlaylistsPlayer.module.css";
 
 function PlaylistsPlayer() {
-  const { currentTheme } = useThemes();
+  const { currentTheme } = useCurrentTrack();
 
   if (!currentTheme) return null;
   return (

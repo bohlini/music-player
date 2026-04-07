@@ -5,7 +5,6 @@ import { NowPlaying } from "./Components/Pages/NowPlaying/NowPlaying";
 import { Playlists } from "./Components/Pages/Playlists/Playlists";
 import { Profile } from "./Components/Pages/Profile/Profile";
 import { TracksProvider } from "./Components/Context/TracksContext";
-import { ThemeProvider } from "./Components/Context/ThemeContext";
 import { FavoritesProvider } from "./Components/Context/FavoritesContext";
 import { CurrentTrackProvider } from "./Components/Context/CurrentTrackContext";
 import { DurationProvider } from "./Components/Context/DurationContext";
@@ -16,25 +15,23 @@ export default function App() {
   return (
     <BrowserRouter>
       <TracksProvider>
-        <ThemeProvider>
-          <FavoritesProvider>
-            <CurrentTrackProvider>
-              <DurationProvider>
-                <QueueProvider>
-                  <PlaylistProvider>
-                    <MainLayout>
-                      <Routes>
-                        <Route path="/" element={<NowPlaying />} />
-                        <Route path="/playlists" element={<Playlists />} />
-                        <Route path="/profile" element={<Profile />} />
-                      </Routes>
-                    </MainLayout>
-                  </PlaylistProvider>
-                </QueueProvider>
-              </DurationProvider>
-            </CurrentTrackProvider>
-          </FavoritesProvider>
-        </ThemeProvider>
+        <FavoritesProvider>
+          <CurrentTrackProvider>
+            <DurationProvider>
+              <QueueProvider>
+                <PlaylistProvider>
+                  <MainLayout>
+                    <Routes>
+                      <Route path="/" element={<NowPlaying />} />
+                      <Route path="/playlists" element={<Playlists />} />
+                      <Route path="/profile" element={<Profile />} />
+                    </Routes>
+                  </MainLayout>
+                </PlaylistProvider>
+              </QueueProvider>
+            </DurationProvider>
+          </CurrentTrackProvider>
+        </FavoritesProvider>
       </TracksProvider>
     </BrowserRouter>
   );

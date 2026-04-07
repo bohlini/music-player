@@ -4,7 +4,6 @@ import {
   useContext,
   useMemo,
   useCallback,
-  useEffect,
 } from "react";
 import { useFavorites } from "./FavoritesContext";
 import { useTracks } from "./TracksContext";

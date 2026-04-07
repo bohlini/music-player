@@ -1,6 +1,3 @@
-import { useTracks } from "../../Context/TracksContext";
-import { useThemes } from "../../Context/ThemeContext";
-import { useFavorites } from "../../Context/FavoritesContext";
 import { useCurrentTrack } from "../../Context/CurrentTrackContext";
 import { useQueue } from "../../Context/QueueContext";
 import { QueueCard } from "../../Card/QueueCard/QueueCard";
@@ -9,10 +6,7 @@ import styles from "./QueueList.module.css";
 
 function QueueList({ limit, list, fadeOut }) {
   const { queue } = useQueue();
-  const { currentTheme } = useThemes();
-  const { currentTrack, focusTrack } = useCurrentTrack();
-  const { favorites } = useFavorites();
-  const { tracks } = useTracks();
+  const { currentTheme, focusTrack } = useCurrentTrack();
 
   const cutOffArray = list ? list.slice(0, limit || list.length) : queue;
 

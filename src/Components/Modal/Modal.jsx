@@ -1,14 +1,14 @@
 import { IoShareOutline } from "react-icons/io5";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { IoColorWandOutline } from "react-icons/io5";
-import { useThemes } from "../Context/ThemeContext";
+import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { usePlaylist } from "../Context/PlaylistContext";
 import { Text } from "../Text/Text";
 import styles from "./Modal.module.css";
 
 function Modal({ isFavorites = false, name, onRename }) {
   const { deletePlaylist } = usePlaylist();
-  const { currentTheme } = useThemes();
+  const { currentTheme } = useCurrentTrack();
 
   if (!currentTheme) return null;
   return isFavorites ? (
