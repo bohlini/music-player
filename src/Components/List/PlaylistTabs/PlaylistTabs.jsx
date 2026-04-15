@@ -6,6 +6,7 @@ function PlaylistTabs() {
 
   function displayTabs() {
     if (!listMap) return null;
+    // REVIEW: Using array `index` as key — playlist tabs can be added/deleted/reordered. Use `key` (the playlist id) instead of `index` for stable keys.
     const items = Object.entries(listMap).map(([name, key], index) => (
       <li key={index}>
         <Text

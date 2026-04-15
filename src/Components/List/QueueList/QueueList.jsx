@@ -12,6 +12,7 @@ function QueueList({ limit, list, fadeOut }) {
 
   function displayList() {
     if (!cutOffArray || !currentTheme) return null;
+    // REVIEW: Using array `index` as key — if the queue reorders (e.g. when current track changes), React will incorrectly reuse DOM nodes causing visual glitches. Use `track._id` or `track.title` instead.
     const items = cutOffArray.map((track, index) => (
       <li key={index}>
         <div
@@ -50,6 +51,7 @@ function QueueList({ limit, list, fadeOut }) {
             fadeOut
               ? {
                   maskImage: `linear-gradient(to bottom, black 50%, transparent 100%)`,
+                  // REVIEW: BUG — Missing closing parenthesis in this CSS value. Should end with `transparent 100%)` not `transparent 100%`. The mask may not render correctly in WebKit browsers.
                   WebkitMaskImage: `linear-gradient(to bottom, black 50%, transparent 100%`,
                 }
               : {}

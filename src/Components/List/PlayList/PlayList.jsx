@@ -12,9 +12,11 @@ function PlayList({ onChangePlaylist, listMap }) {
   const { playlists, addPlaylist, dataMap } = usePlaylist();
   const { addUserUrl, favoritesUrl } = mockImages.URLs;
 
+  // REVIEW: `amount` is declared with `let` outside the render function and mutated inside `.map()` — while it works because map is synchronous, this is a confusing pattern. Move `amount` calculation inside the map callback as a local `const`.
   let amount = 0;
   function displayList() {
     if (!playlists) return null;
+    // REVIEW: Using array `index` as key — playlists can be added and deleted, so index-based keys will cause incorrect reconciliation. Use `playlist.id` instead.
     const list = playlists.map((playlist, index) => {
       amount = dataMap[playlist.id]?.length ?? playlist.amount ?? 0;
       return (

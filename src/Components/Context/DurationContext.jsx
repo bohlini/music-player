@@ -39,6 +39,7 @@ function DurationProvider({ children }) {
 
   useEffect(() => {
     if (!currentTrack) return;
+    // REVIEW: Duration format assumes `2.25` means 2 min 25 sec (multiplying the decimal by 100). This is non-standard — if the API returns `3.5` meaning 3 min 50 sec, the math would be wrong (it'd calculate 3 min 50 sec correctly by accident, but `3.09` would compute to 9 sec, and `3.1` to 10 sec instead of 6 sec). Document the expected format or use a standard like total seconds.
     const minutes = Math.floor(currentTrack.duration);
     const seconds = Math.floor((currentTrack.duration - minutes) * 100);
     setTrackDuration(minutes * 60 + seconds);

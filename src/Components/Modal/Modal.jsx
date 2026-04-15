@@ -15,6 +15,7 @@ function Modal({ isFavorites = false, name, onRename }) {
     <>
       <div className={styles.modalContent}>
         <ul style={{ "--theme": currentTheme }}>
+          {/* REVIEW: "Share playlist" has no onClick handler — it renders but does nothing when clicked. */}
           <li>
             <Text type="label">Share playlist</Text>
             <IoShareOutline />

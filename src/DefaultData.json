@@ -8,3 +8,4 @@
     "duration": 2.25,
     "img_url": "https://unsplash.com/photos/a-black-record-on-a-white-background-igj1YmV2UIc"
 }
+"REVIEW_img_url": "BUG — This is an Unsplash photo page URL, not a direct image URL. It won't work as an <img src>. Use the direct image URL format: https://images.unsplash.com/photo-... Also, this file doesn't appear to be imported or used anywhere in the app.",

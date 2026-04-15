@@ -1,71 +1,77 @@
 .sideBarContainer {
-    color: white;
-    width: fit-content;
-    padding: 5em 1em;
-    margin: -70px -50px;
-    height: 100%;
-    position: fixed;
+  color: white;
+  width: fit-content;
+  padding: 5em 1em;
+  margin: -70px -50px;
+  height: 100%;
+  position: fixed;
 }
 
 .image {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    box-shadow: -2.29637336730957px -2.29637336730957px 13.10233688354492px 0px rgba(255, 255, 255, 5%), 7.564516544342041px 7.564516544342041px 17.82257843017578px 6.051612854003906px rgba(0, 0, 0, 10%), -7.564516544342041px 7.564516544342041px 7.82257843017578px 0px rgba(0, 0, 0, 5%);
-    opacity: .9;
-    object-fit: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  box-shadow:
+    -2.29637336730957px -2.29637336730957px 13.10233688354492px 0px
+      rgba(255, 255, 255, 5%),
+    7.564516544342041px 7.564516544342041px 17.82257843017578px
+      6.051612854003906px rgba(0, 0, 0, 10%),
+    -7.564516544342041px 7.564516544342041px 7.82257843017578px 0px
+      rgba(0, 0, 0, 5%);
+  opacity: 0.9;
+  object-fit: cover;
 }
 
 .textContainer {
-    margin-left: 10px;
-
+  margin-left: 10px;
 }
 
 .listItemContainer {
-    margin-left: 10em;
-    padding: 0em 2em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: 1px solid red;
+  margin-left: 10em;
+  padding: 0em 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid red; /* REVIEW: Debug border left in — remove before production. */
 }
 
 .listIcon {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .playlistText {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .playlistsContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: -20px 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: -20px 2em; /* REVIEW: Invalid CSS — negative padding is not allowed. This rule is silently ignored by browsers. Use `margin: -20px 2em` if negative spacing is intended. */
 }
 
 .tabsContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-    list-style: none;
-    margin-top: 1em;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  list-style: none;
+  margin-top: 1em;
+  flex-wrap: wrap;
 }
 
+/* REVIEW: This mask goes from `black 100%` to `transparent 100%` — both stops are at 100%, so the entire element is fully visible with no fade effect. The mask does nothing. If a fade is intended, use something like `black 80%, transparent 100%`. */
 .fadeOut {
-    mask-image: linear-gradient(to right, black 100%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 100%, transparent 100%);
+  mask-image: linear-gradient(to right, black 100%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 100%, transparent 100%);
 }
 
 @media (max-width: 768px) {
-    .playlistsContainer {
-        width: 100%;
-    }
+  .playlistsContainer {
+    width: 100%;
+  }
 
-    .fadeOut {
-        mask-image: none;
-        -webkit-mask-image: none;
-    }
+  .fadeOut {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
 }

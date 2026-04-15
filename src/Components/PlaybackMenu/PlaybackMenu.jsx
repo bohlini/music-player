@@ -21,6 +21,7 @@ function PlaybackMenu({ currentTheme, variant }) {
     else focusTrack(tracks[0]);
   }
 
+  // REVIEW: Typo — `previusTrack` should be `previousTrack`.
   function previusTrack() {
     if (currentIndex === null || !tracks) return;
     if (tracks[currentIndex - 1]) focusTrack(tracks[currentIndex - 1]);
@@ -31,6 +32,7 @@ function PlaybackMenu({ currentTheme, variant }) {
     <>
       {variant === "nowPlaying" ? (
         <div className={styles.container}>
+          {/* REVIEW: Shuffle button has no onClick handler — it renders but does nothing when clicked. */}
           <IconButton icon={<IoShuffleOutline />} size="small" />
           <IconButton
             icon={<IoPlaySkipBackOutline />}
@@ -48,6 +50,7 @@ function PlaybackMenu({ currentTheme, variant }) {
             size="small"
             onClick={nextTrack}
           />
+          {/* REVIEW: Repeat/refresh button resets duration but doesn't actually implement "repeat" behavior — the icon suggests repeat, but it just resets the timer to 0. */}
           <IconButton
             icon={<IoRefresh />}
             size="small"

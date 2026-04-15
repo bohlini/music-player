@@ -57,6 +57,7 @@ function PlaylistCard({ cover, title, underTitle, onClick }) {
             <Text type="playlistUnderTitle">{underTitle}</Text>
           </div>
 
+          {/* REVIEW: BUG — `input="playlistTitle"` is not a recognized prop for the Text component. Text expects `type`, not `input`. This means no CSS class is applied to this Text wrapper during editing. Change to `type="playlistTitle"`. */}
           {editing ? (
             <Text input="playlistTitle">
               <input

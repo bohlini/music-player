@@ -10,6 +10,7 @@ function ProgressBar({ currentTheme, variant }) {
     trackDuration,
   } = useDuration();
 
+  // REVIEW: BUG — When `trackDuration` is 0 or null, this evaluates to `NaN` or `Infinity`, which gets passed as `width: "NaN%"` to the style. Add a guard: `const progress = trackDuration ? (currentDuration / trackDuration) * 100 : 0;`
   const progress = (currentDuration / trackDuration) * 100;
 
   return (

@@ -1,4 +1,5 @@
 import "./global-css.css";
+// REVIEW: Importing from "react-router" but `package.json` lists "react-router-dom" as the dependency. While this works (react-router-dom re-exports), it's inconsistent. Import from "react-router-dom" to match the installed package.
 import { BrowserRouter, Routes, Route } from "react-router";
 import { MainLayout } from "./Components/Layout/MainLayout";
 import { NowPlaying } from "./Components/Pages/NowPlaying/NowPlaying";
@@ -13,6 +14,7 @@ import { PlaylistProvider } from "./Components/Context/PlaylistContext";
 
 export default function App() {
   return (
+    {/* REVIEW: 6 levels of nested context providers — consider combining them into a single `AppProviders` component or using a compose-providers utility to improve readability. */}
     <BrowserRouter>
       <TracksProvider>
         <FavoritesProvider>

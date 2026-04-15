@@ -13,6 +13,7 @@ function FavoritesProvider({ children }) {
   const [storedValue, setStoredValue] = useLocalStorage("Favorites", []);
   const [favorites, setFavorites] = useState(storedValue);
 
+  // REVIEW: Track identity is matched by `title` instead of a unique ID (`_id`). If two tracks share the same title, toggling one removes/adds both.
   const setLike = useCallback((track) => {
     setFavorites((prev) =>
       prev.find((t) => t.title === track.title)
@@ -28,6 +29,7 @@ function FavoritesProvider({ children }) {
     [favorites],
   );
 
+  // REVIEW: `setStoredValue` is missing from the dependency array — React will warn about exhaustive-deps.
   useEffect(() => {
     setStoredValue(favorites);
   }, [favorites]);
