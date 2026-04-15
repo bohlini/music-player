@@ -2,6 +2,7 @@ import { useLocation } from "react-router";
 import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { useWindowWidth } from "../Hooks/useWindowWidth";
 import { Navbar } from "../Navbar/Navbar";
+// REVIEW: The folder is named `DeviceSelector.jsx` (with `.jsx` extension in the directory name) — this is non-standard and confusing. Rename the folder to just `DeviceSelector`.
 import { DeviceSelector } from "../DeviceSelector.jsx/DeviceSelector";
 
 function MainLayout({ children }) {
@@ -18,6 +19,7 @@ function MainLayout({ children }) {
     else return "default";
   };
 
+  // REVIEW: All layout styling is done with inline styles instead of the imported CSS module (`MainLayout.module.css`). The CSS module only defines `.playerContainer` which is never used. Move these styles to the module or remove the unused CSS file.
   return (
     <>
       <div

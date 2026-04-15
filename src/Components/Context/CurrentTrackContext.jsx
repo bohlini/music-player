@@ -19,6 +19,7 @@ function CurrentTrackProvider({ children }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentTheme, setCurrentTheme] = useState(null);
 
+  // REVIEW: `currentTrack` and `storedValue` are missing from the dependency array — React will warn about exhaustive-deps.
   useEffect(() => {
     if (!currentTrack && tracks?.length > 0) {
       const track = storedValue || tracks[0];
@@ -28,6 +29,7 @@ function CurrentTrackProvider({ children }) {
     }
   }, [tracks]);
 
+  // REVIEW: `setStoredValue` is missing from the useCallback dependency array — React will warn about exhaustive-deps.
   const focusTrack = useCallback((track) => {
     if (!track) return;
     setStoredValue(track);
@@ -36,6 +38,8 @@ function CurrentTrackProvider({ children }) {
     setIsPlaying(true);
   }, []);
 
+  // REVIEW: `tracks` is missing from the dependency array — if tracks change while currentTrack stays the same, the index won't update.
+  // REVIEW: Track identity matched by `title` — same concern as other contexts. Use `_id` for reliable matching.
   useEffect(() => {
     if (!currentTrack) return;
     const index = tracks.findIndex(

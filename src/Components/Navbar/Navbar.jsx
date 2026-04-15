@@ -9,7 +9,9 @@ function Navbar() {
   const { windowWidth } = useWindowWidth();
 
   const mobileWindow = windowWidth <= 768;
+  // REVIEW: `mobileNav` state is redundant — it always mirrors `mobileWindow`. Replace `mobileNav` with `mobileWindow` directly and remove the useEffect.
   const [mobileNav, setMobileNav] = useState(false);
+  // REVIEW: Mobile menu doesn't close when a link is clicked — after navigating, the dropdown remains open until the user clicks the menu icon again.
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

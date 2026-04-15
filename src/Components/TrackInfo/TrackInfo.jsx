@@ -1,5 +1,6 @@
 import { useCurrentTrack } from "../Context/CurrentTrackContext";
 import { Text } from "../Text/Text";
+// REVIEW: Typo in filename — the CSS file is named `TackInfo.module.css` (missing 'r'). Rename it to `TrackInfo.module.css` for consistency.
 import styles from "./TackInfo.module.css";
 
 function TrackInfo({ variant }) {

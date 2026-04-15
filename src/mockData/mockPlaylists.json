@@ -20,3 +20,4 @@
     }
   ]
 }
+"_REVIEW_crypto.randomUUID()": "BUG — The id is the literal string 'crypto.randomUUID()' instead of an actual UUID. This was likely meant to be dynamically generated but got written as a string. This playlist won't match any key in dataMap, so clicking it shows no tracks.",

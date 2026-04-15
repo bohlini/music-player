@@ -10,6 +10,8 @@ function QueueProvider({ children }) {
 
   const [queue, setQueue] = useState(tracks);
 
+  // REVIEW: `setCurrentIndex` is missing from the dependency array — React will warn about this exhaustive-deps violation.
+  // REVIEW: Track identity is matched by `title` (not a unique ID like `_id`). If two tracks share the same title, `findIndex` returns the first match, causing incorrect queue rotation.
   useEffect(() => {
     if (!currentTrack || !tracks.length) return;
 

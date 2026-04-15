@@ -37,6 +37,7 @@ function PlaylistProvider({ children }) {
     );
   }, [playlists]);
 
+  // REVIEW: `newPlaylistUrl` is missing from the dependency array. Also, playlist names can collide (e.g. adding, deleting, then adding again produces duplicate names like "My Playlist 4").
   const addPlaylist = useCallback(() => {
     if (!playlists) return;
     const updatedPlaylists = [

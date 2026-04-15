@@ -9,6 +9,7 @@ import styles from "../Playlists/Playlists.module.css";
 
 function Playlists() {
   const { activeList, changePlayList, dataMap, listMap } = usePlaylist();
+  // REVIEW: BUG — Same issue as NowPlaying: `isLoading` is not exposed by TracksContext, so this is always `undefined` and the loading guard on line 14 never triggers.
   const { isLoading } = useTracks();
 
   if (isLoading) return <Text type="meta">Loading...</Text>;

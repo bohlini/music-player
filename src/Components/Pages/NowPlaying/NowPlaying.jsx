@@ -11,6 +11,7 @@ import { useWindowWidth } from "../../Hooks/useWindowWidth";
 import styles from "./NowPlaying.module.css";
 
 function NowPlaying() {
+  // REVIEW: BUG — `isLoading` is destructured from `useTracks()`, but TracksContext does not include `isLoading` in its context value. This will always be `undefined`, so `if (isLoading)` on line 21 never triggers and the "Loading..." text is never shown.
   const { isLoading } = useTracks();
   const { currentTheme } = useCurrentTrack();
   const { queue } = useQueue();

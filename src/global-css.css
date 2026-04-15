@@ -1,29 +1,30 @@
 :root {
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
+/* REVIEW: `:global(.active)` is CSS Modules syntax, but this is a plain CSS file (not a .module.css). This selector will not work as intended — it will be treated as a literal `:global(.active)` pseudo-class which is invalid in standard CSS. Move this rule to a CSS module or use `a.active p` instead. */
 a:global(.active) p {
-    color: #eee;
+  color: #eee;
 }
 
 ul {
-    padding-inline-start: 0px;
+  padding-inline-start: 0px;
 }
 
 ul li {
-    list-style: none;
+  list-style: none;
 }
 
 ul li a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 @keyframes zoomIn {
-    from {
-        transform: scale(1.1);
-    }
+  from {
+    transform: scale(1.1);
+  }
 
-    to {
-        transform: scale(1.25);
-    }
+  to {
+    transform: scale(1.25);
+  }
 }
